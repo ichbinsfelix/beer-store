@@ -10,6 +10,7 @@ import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up
 import Header from './components/header/header.component';
 import { auth, createUserProfileDocument } from './firebase/firebase.util';
 import { setCurrentUser } from './redux/user/user.actions';
+
 class App extends React.Component {
   unsubscribeFromAuth = null;
 
@@ -21,7 +22,7 @@ class App extends React.Component {
         const userRef = await createUserProfileDocument(userAuth);
 
         userRef.onSnapshot((snapShot) => {
-          this.props.setCurrentUser({
+          setCurrentUser({
             id: snapShot.id,
             ...snapShot.data()
           });
